@@ -26,7 +26,7 @@ const products = [
   {
     id: 4,
     name: "OnePlus 12 (256GB)",
-    price: "$899",
+    price: "$799",
     image: "https://fdn2.gsmarena.com/vv/pics/oneplus/oneplus-12-1.jpg"
   },
   {
