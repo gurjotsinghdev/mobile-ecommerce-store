@@ -1,8 +1,9 @@
 "use client";
 
+import { Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 
-export default function Checkout() {
+function CheckoutContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const cart = JSON.parse(searchParams.get("cart") || "[]");
@@ -22,7 +23,9 @@ export default function Checkout() {
               alt="Logo"
               className="w-10 h-10"
             />
-            <a href="/" className="text-2xl font-bold text-gray-800 hover:underline">Mobile Store</a>
+            <a href="/" className="text-2xl font-bold text-gray-800 hover:underline">
+              Mobile Store
+            </a>
           </div>
           <button
             onClick={goBack}
@@ -54,13 +57,20 @@ export default function Checkout() {
             <div className="mt-6 p-4 bg-green-100 border border-green-300 rounded">
               <h2 className="font-semibold text-lg">Order Placed</h2>
               <p>
-                Your order has been placed with <strong>Cash on Delivery</strong>.
-                We will contact you shortly.
+                Your order has been placed with <strong>Cash on Delivery</strong>. We will contact you shortly.
               </p>
             </div>
           </div>
         )}
       </main>
     </div>
+  );
+}
+
+export default function Checkout() {
+  return (
+    <Suspense fallback={<div className="p-6 text-center">Loading checkout...</div>}>
+      <CheckoutContent />
+    </Suspense>
   );
 }
